@@ -4,21 +4,23 @@
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     // JSX start...
-    "jsx": "preserve",// 保留JSX内容不被编译，便于后续由其他工具编译处理。
+    "jsx": "preserve", // 保留JSX内容不被编译，便于后续由其他工具编译处理。
     "jsxImportSource": "vue", // 指定在处理 JSX内容 时使用 Vue 的 h 函数处理jsx语法
     "allowImportingTsExtensions": true, //允许在导入 TypeScript 文件时省略 .ts 或 .tsx 扩展名
     // JSX end...
     "composite": true,
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
-    "sourceMap": true,            // 生成目标文件的sourceMap文件
-    "types": ["webpack-env","@vue/runtime-core"],  // 引入webpack-env、@vue/runtime-core的声明
+    "sourceMap": true, // 生成目标文件的sourceMap文件
+    "types": ["webpack-env", "@vue/runtime-core"], // 引入webpack-env、@vue/runtime-core的声明
     // decorator start...
-    "experimentalDecorators": true,  // 开启装饰器支持
-    "emitDecoratorMetadata": true,    // 启用装饰器元数据支持
+    "experimentalDecorators": true, // 开启装饰器支持
+    "emitDecoratorMetadata": true, // 启用装饰器元数据支持
     // decorator end...
+    "incremental": true, // 开启增量编译：TS 编译器在第一次编译的时候，会生成一个存储编译信息的文件，下一次编译的时候，会根据这个文件进行增量的编译，以此提高 TS 的编译速度
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo", //指定存储增量编译信息的文件位置
+    "diagnostics": true, //打印诊断信息
   }
 }

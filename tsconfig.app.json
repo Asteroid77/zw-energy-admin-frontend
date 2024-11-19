@@ -14,7 +14,7 @@
       "@/*": ["./src/*"]
     },
     "sourceMap": true, // 生成目标文件的sourceMap文件
-    "types": ["webpack-env", "@vue/runtime-core"], // 引入webpack-env、@vue/runtime-core的声明
+    "types": [],
     // decorator start...
     "experimentalDecorators": true, // 开启装饰器支持
     "emitDecoratorMetadata": true, // 启用装饰器元数据支持

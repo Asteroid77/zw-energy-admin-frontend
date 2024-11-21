@@ -4,7 +4,11 @@ import ToastService from 'primevue/toastservice'
 import theme from '@/constant/config/theme'
 import type { App } from 'vue'
 
-export default function (app: App<Element>) {
+/**
+ * 初始化UI框架
+ * @param {App<Element>} app
+ */
+export const useUIFramework = (app: App<Element>): void => {
   app.use(PrimeVue, theme)
   app.use(ToastService)
 }

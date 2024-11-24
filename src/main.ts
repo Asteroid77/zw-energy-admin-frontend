@@ -5,15 +5,16 @@ import { createPinia } from 'pinia'
 
 import Application from './App.vue'
 import router from './router'
-import { useUIFramework } from '@/hooks/ui/useUIFramework.ts'
-import { useI18n } from '@/hooks/i18n/useI18n.ts'
+import { useUIFrameworkPlugins } from '@/hooks/plugins/useUIFrameworkPlugins.ts'
+import { useRequestPlugin } from '@/hooks/plugins/useRequestPlugin.ts'
+import { usePlugins } from '@/hooks/plugins/usePlugins.ts'
 
 const app: App<Element> = createApp(Application)
 
-app.use(createPinia())
-app.use(router)
-//UI框架初始化
-useUIFramework(app)
-//I18N初始化
-useI18n(app)
+usePlugins(app, [
+  { plugin: createPinia() }, //Pinia初始化,
+  { plugin: router }, //路由初始化
+  useUIFrameworkPlugins(), //UI框架初始化
+])
+
 app.mount('#app')

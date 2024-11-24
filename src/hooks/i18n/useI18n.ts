@@ -1,23 +1,31 @@
-import { type App, type Ref, ref } from 'vue'
-import { createI18n } from 'vue-i18n'
-import en from '@/constant/i18n/en.ts'
+import {
+  type Composer,
+  type ComposerTranslation,
+  createI18n,
+  type I18n,
+  type I18nOptions,
+  useI18n,
+  type UseI18nOptions,
+} from 'vue-i18n'
+import type { I18NComposerTranslation, I18NInfo, I18NLanguage } from '@/types/i18n'
+import { ref, type Ref } from 'vue'
 import zhCN from '@/constant/i18n/zh-CN.ts'
-import type { I18NInfo } from '@/types/i18n'
+import en from '@/constant/i18n/en.ts'
+import ZhCN from '@/constant/i18n/zh-CN.ts'
 export const language: Ref<NavigatorLanguage['language']> = ref(window.navigator.language)
+const i18n = createI18n({
+  legacy: false,
+  locale: language.value,
+  fallbackLocale: 'zh-CN',
+  messages: {
+    'zh-CN': zhCN,
+    en: en,
+  },
+})
 /**
- * 初始化I18N
- * @see https://vue-i18n.intlify.dev/guide/advanced/typescript
- * @param {App<Element>} app
+ * 获取i18n实例
+ * @return {I18NComposerTranslation}
  */
-export const useI18n = (app: App<Element>): void => {
-  const i18n = createI18n<[I18NInfo], 'zh-CN' | 'en'>({
-    legacy: false,
-    locale: language.value,
-    fallbackLocale: 'zh-CN',
-    messages: {
-      'zh-CN': zhCN,
-      en: en,
-    },
-  })
-  app.use(i18n)
+export function useI18N(): I18NComposerTranslation {
+  return i18n.global.t
 }

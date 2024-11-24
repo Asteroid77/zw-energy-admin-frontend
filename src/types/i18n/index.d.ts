@@ -1,4 +1,7 @@
+import type { I18nOptions, ComposerTranslation } from 'vue-i18n'
+
 export interface I18NInfo {
+  [key: string]: object | string
   common: {
     empty: string
     concluded: string
@@ -14,6 +17,7 @@ export interface I18NInfo {
     approvalData: string
     zwEnergy: string
     success: string
+    error: string
     notEmpty: string
   }
   actions: {
@@ -265,3 +269,8 @@ export interface I18NInfo {
     }
   }
 }
+export type I18NLanguage = 'zh-CN' | 'en'
+export type I18NComposerTranslation = ComposerTranslation<
+  { 'zh-CN': I18NInfo; en: I18NInfo },
+  'zh-CN' | 'en'
+>

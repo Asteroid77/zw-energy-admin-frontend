@@ -15,6 +15,7 @@ usePlugins(app, [
   { plugin: createPinia() }, //Pinia初始化,
   { plugin: router }, //路由初始化
   useUIFrameworkPlugins(), //UI框架初始化
+  useRequestPlugin(),
 ])
 
 app.mount('#app')

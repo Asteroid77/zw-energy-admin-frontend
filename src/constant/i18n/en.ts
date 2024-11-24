@@ -17,6 +17,7 @@ const i18NInfo: I18NInfo = {
     zwEnergy: 'ZW United',
     success: 'Success',
     notEmpty: 'Cannot be empty',
+    error: 'OOPS!',
   },
   actions: {
     operate: 'Operate',

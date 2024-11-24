@@ -17,6 +17,7 @@ const i18NInfo: I18NInfo = {
     zwEnergy: '中网联合',
     success: '成功',
     notEmpty: '不能为空',
+    error: '失败',
   },
   actions: {
     operate: '操作',

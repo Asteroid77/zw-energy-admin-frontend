@@ -1,6 +1,5 @@
 import { type App, type Plugin, type Ref, ref } from 'vue'
 import type { ToBeInstalledPlugin, ToBeInstalledPluginList } from '@/types/plugins'
-import { match } from 'ts-pattern'
 const _installedPlugins = ref(new Set<Plugin>())
 /**
  * 注册单个Vue插件
@@ -18,7 +17,7 @@ function _usePlugin(app: App<Element>, plugin: Plugin, option?: Record<string, u
 /**
  * 注册Vue插件
  * @param {App<Element>} app Vue实例
- * @param {ToBeInstalledPlugin | ToBeInstalledPlugin[]} data 插件或插件列表
+ * @param {ToBeInstalledPlugin | ToBeInstalledPlugin[] | ToBeInstalledPluginList} data 插件或插件列表
  */
 export function usePlugins(app: App<Element>, data: ToBeInstalledPluginList): void
 export function usePlugins(app: App<Element>, data: ToBeInstalledPlugin): void
@@ -36,13 +35,7 @@ export function usePlugins(
       _usePlugin(app, item.plugin, item.option)
     }
   }
-  if (Array.isArray(data)) {
-    data.forEach((item) => {
-      _processPlugin(item)
-    })
-  } else {
-    _processPlugin(data)
-  }
+  _processPlugin(data)
 }
 
 /**

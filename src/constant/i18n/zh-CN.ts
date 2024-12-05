@@ -42,6 +42,13 @@ const i18NInfo: I18NInfo = {
     expand: '展开',
     close: '收起',
   },
+  captcha: {
+    sms: {
+      success: {
+        title: '短信发送成功',
+      },
+    },
+  },
   exception: {
     title: '出现了一些小问题',
     ECONNABORTED: {
@@ -75,6 +82,13 @@ const i18NInfo: I18NInfo = {
     incompatibility: {
       title: '糟糕！您的浏览器与站点存在兼容性问题',
       description: '或许您可以更换浏览器尝试(Chrome;Edge;Android9+;Ios12+等现代浏览器/WebView)',
+    },
+    unexpected: {
+      title: '服务端异常',
+      message: '请稍后重试或联系管理员',
+      business: {
+        title: '业务处理失败',
+      },
     },
   },
   account: {

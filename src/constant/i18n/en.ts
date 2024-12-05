@@ -17,7 +17,7 @@ const i18NInfo: I18NInfo = {
     zwEnergy: 'ZW United',
     success: 'Success',
     notEmpty: 'Cannot be empty',
-    error: 'OOPS!',
+    error: 'Oops!',
   },
   actions: {
     operate: 'Operate',
@@ -41,6 +41,13 @@ const i18NInfo: I18NInfo = {
     forgetPassword: 'Forgot Password?',
     expand: 'Expand',
     close: 'Collapse',
+  },
+  captcha: {
+    sms: {
+      success: {
+        title: 'Sms sending success',
+      },
+    },
   },
   exception: {
     title: 'There were some issues',
@@ -78,6 +85,13 @@ const i18NInfo: I18NInfo = {
       title: 'Oops! Your browser is incompatible with the site',
       description:
         'You may try switching to another browser (Chrome, Edge, Android 9+, iOS 12+, or other modern browsers/WebView)',
+    },
+    unexpected: {
+      title: 'Oops! Unexpected Server Error Occurred',
+      message: 'Please try again later or contact the site administrator to resolve the issue.',
+      business: {
+        title: 'Oops! Unexpected business error occurred',
+      },
     },
   },
   account: {

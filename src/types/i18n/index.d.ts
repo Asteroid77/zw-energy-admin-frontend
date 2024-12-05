@@ -1,7 +1,10 @@
 import type { I18nOptions, ComposerTranslation } from 'vue-i18n'
 
+/**
+ * I18n服务的所有键与值类型
+ */
 export interface I18NInfo {
-  [key: string]: object | string
+  [key: string]: Record<string, unknown> | string
   common: {
     empty: string
     concluded: string
@@ -43,6 +46,13 @@ export interface I18NInfo {
     expand: string
     close: string
   }
+  captcha: {
+    sms: {
+      success: {
+        title: string
+      }
+    }
+  }
   exception: {
     title: string
     ECONNABORTED: {
@@ -76,6 +86,13 @@ export interface I18NInfo {
     incompatibility: {
       title: string
       description: string
+    }
+    unexpected: {
+      title: string
+      message: string
+      business: {
+        title: string
+      }
     }
   }
   permission: {
@@ -269,7 +286,16 @@ export interface I18NInfo {
     }
   }
 }
+
+/**
+ * I18N目前支持的两种语言
+ * - `zh-CN`: 中文
+ * - `en`: 英文
+ */
 export type I18NLanguage = 'zh-CN' | 'en'
+/**
+ * 项目使用的I18N实例类型
+ */
 export type I18NComposerTranslation = ComposerTranslation<
   { 'zh-CN': I18NInfo; en: I18NInfo },
   'zh-CN' | 'en'

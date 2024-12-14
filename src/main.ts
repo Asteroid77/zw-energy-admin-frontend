@@ -8,9 +8,11 @@ import { useRequestPlugin } from '@/hooks/plugins/useRequestPlugin.ts'
 import { usePlugins } from '@/hooks/plugins/usePlugins.ts'
 import { useRouterPlugin } from '@/hooks/plugins/useRouterPlugin.ts'
 import { usePiniaPlugin } from '@/hooks/plugins/usePiniaPlugin.ts'
+import { useDirectives } from './hooks/directives/useDirectives'
 
 const app: App<Element> = createApp(Application)
 
 usePlugins(app, [usePiniaPlugin(), useRouterPlugin(), useUIFrameworkPlugins(), useRequestPlugin()])
+useDirectives(app)
 
 app.mount('#app')

@@ -1,0 +1,48 @@
+.layout-news {
+  // layout
+  overflow: hidden;
+  // color
+  background-color: var(--p-primary-color);
+  &__content,
+  &__close {
+    color: var(--p-primary-contrast-color);
+  }
+  &__close {
+    &:hover {
+      background-color: var(--p-primary-200);
+    }
+  }
+  &--error {
+    background-color: var(--p-invalid-color);
+    .layout-news__close {
+      &:hover {
+        background-color: var(--p-invalid-hover-color);
+      }
+    }
+  }
+  // animation
+  transition: transform 0.3s ease-in-out;
+  transform-origin: top;
+  &--hidden {
+    animation: slideUp 0.3s ease forwards;
+  }
+  &--show {
+    animation: slideDown 0.3s ease forwards;
+  }
+}
+@keyframes slideUp {
+  0% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0);
+  }
+}
+@keyframes slideDown {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

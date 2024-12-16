@@ -1,5 +1,9 @@
 import { type App, type Plugin, type Ref, ref } from 'vue'
 import type { ToBeInstalledPlugin, ToBeInstalledPluginList } from '@/types/plugins'
+import { usePiniaPlugin } from './usePiniaPlugin'
+import { useRouterPlugin } from './useRouterPlugin'
+import { useUIFrameworkPlugins } from './useUIFrameworkPlugins'
+import { useRequestPlugin } from './useRequestPlugin'
 const _installedPlugins = ref(new Set<Plugin>())
 /**
  * 注册单个Vue插件
@@ -19,23 +23,8 @@ function _usePlugin(app: App<Element>, plugin: Plugin, option?: Record<string, u
  * @param {App<Element>} app Vue实例
  * @param {ToBeInstalledPlugin | ToBeInstalledPlugin[] | ToBeInstalledPluginList} data 插件或插件列表
  */
-export function usePlugins(app: App<Element>, data: ToBeInstalledPluginList): void
-export function usePlugins(app: App<Element>, data: ToBeInstalledPlugin): void
-export function usePlugins(app: App<Element>, data: ToBeInstalledPlugin[]): void
-export function usePlugins(
-  app: App<Element>,
-  data: ToBeInstalledPlugin | ToBeInstalledPlugin[] | ToBeInstalledPluginList,
-): void {
-  const _processPlugin = (
-    item: ToBeInstalledPlugin | ToBeInstalledPlugin[] | ToBeInstalledPluginList,
-  ): void => {
-    if (Array.isArray(item)) {
-      item.forEach((subItem) => _processPlugin(subItem))
-    } else {
-      _usePlugin(app, item.plugin, item.option)
-    }
-  }
-  _processPlugin(data)
+export function usePlugins(app: App<Element>): void {
+  _initiation(app)
 }
 
 /**
@@ -44,4 +33,29 @@ export function usePlugins(
  */
 export function getInstalledPlugins(): Ref<Set<Plugin>> {
   return _installedPlugins
+}
+/**
+ * 插件统一初始化
+ * @param {App<Element>} app Vue实例
+ */
+function _initiation(app: App<Element>) {
+  const data: ToBeInstalledPlugin | ToBeInstalledPlugin[] | ToBeInstalledPluginList = [
+    usePiniaPlugin(),
+    useRouterPlugin(),
+    useUIFrameworkPlugins(),
+    useRequestPlugin(),
+  ]
+  const _processPlugin = (
+    item: ToBeInstalledPlugin | ToBeInstalledPlugin[] | ToBeInstalledPluginList,
+  ): void => {
+    if (Array.isArray(item)) {
+      item.forEach((subItem) => _processPlugin(subItem))
+    } else {
+      _usePlugin(app, item.plugin, item.option)
+      if (item.callback) {
+        item.callback()
+      }
+    }
+  }
+  _processPlugin(data)
 }

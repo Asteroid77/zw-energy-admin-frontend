@@ -24,4 +24,12 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  //@see https://vite.dev/config/shared-options#css-preprocessoroptions
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler', // or "modern"
+      },
+    },
+  },
 })

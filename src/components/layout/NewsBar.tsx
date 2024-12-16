@@ -1,33 +1,33 @@
-import '@/styles/NewsBarView.scss'
-import { defineComponent, ref, watch } from 'vue'
+import { defineComponent } from 'vue'
 import clsx from 'clsx'
 import { useNewsBarStore } from '@/stores/useNewsBarStore.ts'
-const store = useNewsBarStore()
-/**
- * 关闭NewBarView
- */
-function handleClose() {
-  store.toggle({
-    display: false,
-  })
-}
 export default defineComponent({
   name: 'NewsBar',
   setup: () => {
+    const store = useNewsBarStore()
+    /**
+     * 关闭NewBarView
+     */
+    function handleClose() {
+      store.toggle({
+        display: false,
+      })
+    }
     return () => (
       <div
         class={clsx(
           'layout-news',
+          'slide-animation',
           'flex',
           'justify-between',
           'items-center',
           'w-full',
           'box-border',
-          'animate-duration-300',
+          'hidden',
           {
             'layout-news--error': store.status === 'error',
-            'layout-news--hidden': !store.display,
-            'layout-news--show': store.display,
+            'slide-animation--hidden': !store.display,
+            'slide-animation--show': store.display,
           },
         )}
       >

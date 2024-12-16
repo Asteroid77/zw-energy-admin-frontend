@@ -1,0 +1,31 @@
+/** Tailwind CSS Initiation */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes slide-up {
+  0% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0);
+  }
+}
+@keyframes slide-down {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+.slide-animation {
+  // animation
+  transform-origin: top;
+  &--hidden {
+    animation: slide-up 0.5s ease forwards;
+  }
+  &--show {
+    animation: slide-down 0.5s ease forwards;
+  }
+}
